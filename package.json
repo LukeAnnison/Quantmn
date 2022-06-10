@@ -1,0 +1,51 @@
+{
+  "name": "nft-paradise",
+  "version": "1.0.0",
+  "description": "Frontier Demo",
+  "scripts": {
+    "dev": "next dev -H 0.0.0.0",
+    "build": "next build",
+    "start": "next start",
+    "prettier": "prettier --write .",
+    "lint": "next lint"
+  },
+  "keywords": [],
+  "author": "Luke Annisno",
+  "license": "MIT",
+  "dependencies": {
+    "@chakra-ui/icons": "^1.1.7",
+    "@chakra-ui/react": "^1.8.8",
+    "@emotion/react": "^11.9.0",
+    "@emotion/styled": "^11.8.1",
+    "@reduxjs/toolkit": "^1.8.2",
+    "@walletconnect/web3-provider": "^1.7.8",
+    "body-parser": "^1.20.0",
+    "ethers": "^5.6.8",
+    "express": "^4.18.1",
+    "formik": "^2.2.9",
+    "framer-motion": "^6.3.0",
+    "global": "^4.4.0",
+    "lodash": "^4.17.21",
+    "mongoose": "^6.3.6",
+    "next": "^12.1.5",
+    "nodemon": "^2.0.16",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-dropzone": "^14.2.1",
+    "react-icons": "^4.3.1",
+    "react-redux": "^8.0.2",
+    "react-toastify": "^9.0.4",
+    "sass": "^1.52.3",
+    "styles": "^0.2.1",
+    "three": "^0.139.2",
+    "walletlink": "^2.5.0",
+    "web3-provider": "^1.0.0",
+    "web3modal": "^1.9.7"
+  },
+  "devDependencies": {
+    "eslint": "^8.13.0",
+    "eslint-config-next": "^12.1.5",
+    "prettier": "^2.6.2",
+    "typescript": "^4.7.3"
+  }
+}
