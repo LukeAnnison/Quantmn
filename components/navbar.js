@@ -202,10 +202,13 @@ const Navbar = props => {
           flexGrow={1}
           mt={{ base: 4, md: 0 }}
         >
+          <LinkItem href="/today" path={path}>
+            Today
+          </LinkItem>
+     
           <LinkItem href="/about" path={path}>
             About
           </LinkItem>
-     
         </Stack>
         <Box flex={1} align="right">
           {signer ? (

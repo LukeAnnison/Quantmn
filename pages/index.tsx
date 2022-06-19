@@ -13,14 +13,14 @@ import Layout from '../components/layouts/article'
 import { GridItem } from '../components/grid-item'
 import Mint from '../components/mint'
 
-import Nft from '../models/nft'
+import Quark from '../models/quark'
 import dbConnect from '../utils/dbConnect'
 import banner from '../public/images/banner.png'
 import thumbYouTube from '../public/images/links/youtube.png'
 import thumbInkdrop from '../public/images/works/inkdrop_eyecatch.png'
-import phonebooth from '../public/images/nfts/phonebooth.png'
+import phonebooth from '../public/images/quarks/phonebooth.png'
 
-const NFTS = [
+const QUARKS = [
   { tier: 1, price: '0.15', thumbnail: phonebooth },
   { tier: 2, price: '0.5', thumbnail: thumbYouTube },
   { tier: 3, price: '2.15', thumbnail: thumbInkdrop },
@@ -37,7 +37,7 @@ const Home = ({ data }: any) => {
   }
   console.log({ data })
 
-  const nfts = data
+  const quarks = data;
 
   return (
     <Layout>
@@ -53,13 +53,14 @@ const Home = ({ data }: any) => {
           </Box>
         </Box>
         <SimpleGrid columns={[1, 4, 4]} gap={2}>
-          {nfts.map((nft, index) => (
+          {quarks.map((quark, index) => (
 
               <Mint
-                  key={nft.key}
-                  name={nft.name}
-                  price={nft.price}
-                  thumbnail={NFTS[random(3)].thumbnail}
+                  key={index}
+                  id={quark._id}
+                  name={quark.name}
+                  price={quark.price}
+                  thumbnail={QUARKS[random(3)].thumbnail}
                 />
           ))}
         </SimpleGrid>
@@ -76,7 +77,7 @@ const Home = ({ data }: any) => {
             onClick={handleAdd}
             style={{ width: '30%', backgroundColor: '#4fb3cf' }}
           >
-            Add NFT
+            Add QUARK
           </Button>
         </div>
       </Container>
@@ -90,11 +91,12 @@ export async function getServerSideProps() {
   await dbConnect()
 
   /* find all the artists in our database, parse it, so readable by next */
-  const response = await Nft.find({}).lean().select({
+  const response = await Quark.find({}).lean().select({
     name: 1,
     description: 1,
     price: 1,
-    file: 1
+    file: 1,
+    _id: 1,
   })
 
   if (!response) {

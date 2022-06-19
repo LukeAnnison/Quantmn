@@ -1,9 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit'
-import { nftReducer } from './reducers/nftSlice'
+import { quarkReducer } from './reducers/quarkSlice'
 
 export const store = configureStore({
   reducer: {
-    nfts: nftReducer
+    quarks: quarkReducer
   }
 })
 

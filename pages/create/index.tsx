@@ -14,7 +14,7 @@ import {
 import { useRef, useCallback } from 'react'
 import { Formik, Form, FormikHelpers } from 'formik'
 
-import { useCreateNftMutation } from '../../store/apiSlice'
+import { useCreateQuarkMutation } from '../../store/apiSlice'
 import { UploadDropzone } from '../../components/UploadDropzone'
 
 import styles from './upload.module.scss'
@@ -27,7 +27,7 @@ interface Values {
 }
 
 const Upload = () => {
-  const [createNft] = useCreateNftMutation()
+  const [createQuark] = useCreateQuarkMutation()
 
   const handleSubmitData = async values => {
     console.log({ values })
@@ -38,7 +38,7 @@ const Upload = () => {
         price: values.price,
         song: values.song
       }
-      await createNft(data)
+      await createQuark(data)
     } catch (error) {
       console.log(error)
     }
@@ -79,7 +79,7 @@ const Upload = () => {
                     lineHeight={1.1}
                     fontSize={{ base: '3xl', sm: '4xl', md: '5xl', lg: '6xl' }}
                   >
-                    Create an NFT{' '}
+                    Create an QUARK{' '}
                     <Text
                       as={'span'}
                       bgGradient="linear(to-r, red.400,pink.400)"
@@ -103,7 +103,7 @@ const Upload = () => {
                       lineHeight={1.1}
                       fontSize={{ base: '2xl', sm: '3xl', md: '4xl' }}
                     >
-                      Create an NFT
+                      Create an QUARK
                       <Text
                         as={'span'}
                         bgGradient="linear(to-r, red.400,pink.400)"

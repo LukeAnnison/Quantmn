@@ -23,7 +23,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx"
-, "pages/api/nft/create/index.ts", "utils/dbConnect.js", "pages/create/index.tsx"  ],
+, "pages/api/quark/create/index.ts", "utils/dbConnect.js", "pages/create/index.tsx"  ],
   "exclude": [
     "node_modules"
   ]

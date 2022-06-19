@@ -1,7 +1,7 @@
 const mongoose = require('mongoose') // requiring the mongoose package
-import type { INft } from '../utils/types'
+import type { IQuark } from '../utils/types'
 
-const nftSchema = new mongoose.Schema({
+const quarkSchema = new mongoose.Schema({
   name: {
     type: String,
   },
@@ -16,4 +16,4 @@ const nftSchema = new mongoose.Schema({
   }
 })
 
-export default mongoose.models.Nft || mongoose.model('Nft', nftSchema)   // creating the model from the schema
+export default mongoose.models.Quark || mongoose.model('Quark', quarkSchema)   // creating the model from the schema

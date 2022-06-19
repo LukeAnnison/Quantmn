@@ -1,10 +1,10 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
-import type { INft } from '../utils/types'
+import type { IQuark } from '../utils/types'
 
-interface NftServerResponse {
+interface QuarkServerResponse {
   success?: boolean
-  data?: INft
+  data?: IQuark
 }
 
 export const apiSlice = createApi({
@@ -13,19 +13,26 @@ export const apiSlice = createApi({
     baseUrl: '/api'
   }),
   endpoints: builder => ({
-    getNft: builder.query<NftServerResponse, string>({
-      query: id => `/nft/${id}`
+    getQuark: builder.query<QuarkServerResponse, string>({
+      query: id => `/quark/${id}`
     }),
 
-    createNft: builder.mutation<NftServerResponse, INft>({
-      query: (data) => ({
-        url: '/nft',
+    createQuark: builder.mutation<QuarkServerResponse, IQuark>({
+      query: data => ({
+        url: 'quarks',
         method: 'POST',
         body: data
+      })
+    }),
+    deleteQuark: builder.mutation<QuarkServerResponse, string>({
+      query: id => ({
+        url: `quark/${id}`,
+        method: 'DELETE',
+        body: id
       })
     })
   })
 })
 
 // Export hooks for usage in functional components
-export const { useGetNftQuery, useCreateNftMutation } = apiSlice
+export const { useGetQuarkQuery, useCreateQuarkMutation, useDeleteQuarkMutation } = apiSlice

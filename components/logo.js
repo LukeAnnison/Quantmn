@@ -35,7 +35,7 @@ const Logo = () => {
             fontWeight="bold"
             ml={3}
           >
-NFT Paradise          </Text>
+uantmn        </Text>
         </LogoBox>
       </a>
     </Link>

@@ -28,7 +28,7 @@ Trace:
 
 npm manifest: 
   {
-    "name": "nft-paradise",
+    "name": "quark-paradise",
     "version": "1.0.0",
     "description": "Frontier Demo",
     "scripts": {
@@ -5259,7 +5259,7 @@ Lockfile:
   multibase@^0.7.0:
     version "0.7.0"
     resolved "https://registry.yarnpkg.com/multibase/-/multibase-0.7.0.tgz#1adfc1c50abe05eefeb5091ac0c2728d6b84581b"
-    integrity sha512-TW8q03O0f6PNFTQDvh3xxH03c8CjGaaYrjkl9UQPG6rz53TQzzxJVCIWVjzcbN/Q5Y53Zd0IBQBMVktVgNx4Fg==
+    integrity sha512-TW8q03O0f6PQUARKQDvh3xxH03c8CjGaaYrjkl9UQPG6rz53TQzzxJVCIWVjzcbN/Q5Y53Zd0IBQBMVktVgNx4Fg==
     dependencies:
       base-x "^3.0.8"
       buffer "^5.5.0"
