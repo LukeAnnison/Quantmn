@@ -1,9 +1,9 @@
-const mongoose = require('mongoose') // requiring the mongoose package
+import mongoose from 'mongoose'
 import type { IQuark } from '../utils/types'
 
 const quarkSchema = new mongoose.Schema({
   name: {
-    type: String,
+    type: String
   },
   description: {
     type: String
@@ -13,7 +13,11 @@ const quarkSchema = new mongoose.Schema({
   },
   file: {
     type: Object
-  }
+  },
+  today_complete: [{
+    date_complete: Date,
+    complete: Boolean
+  }]
 })
 
-export default mongoose.models.Quark || mongoose.model('Quark', quarkSchema)   // creating the model from the schema
+export default mongoose.models.Quark || mongoose.model('Quark', quarkSchema) // creating the model from the schema

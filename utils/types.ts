@@ -3,6 +3,7 @@ export interface IQuark {
   description: string
   price: number
   song: {}
+  today_complete: boolean
 }
 
 export interface IQuarks {

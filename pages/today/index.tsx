@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useCallback, useMemo, useState } from 'react'
 import {
   Heading,
   Box,
@@ -7,45 +7,62 @@ import {
   Center,
   Container
 } from '@chakra-ui/react'
-import {  map } from 'lodash'
+import { map } from 'lodash'
 
-
+import { IQuark } from '../../utils/types'
+import styles from './today.module.scss'
 import Quark from '../../models/quark'
 import dbConnect from '../../utils/dbConnect'
-import thumbYouTube from '../../public/images/links/youtube.png'
-import thumbInkdrop from '../../public/images/works/inkdrop_eyecatch.png'
-import phonebooth from '../../public/images/quarks/phonebooth.png'
+import { useUpdateQuarkMutation, useGetQuarksQuery } from '../../store/apiSlice'
 
-const QUARKS = [
-  { tier: 1, price: '0.15', thumbnail: phonebooth },
-  { tier: 2, price: '0.5', thumbnail: thumbYouTube },
-  { tier: 3, price: '2.15', thumbnail: thumbInkdrop },
-  { tier: 1, price: '6', thumbnail: phonebooth }
-]
+const Today = ({ quarks }: any) => {
+    const filter = JSON.stringify({ name: "Test Quark"});
+  const { data, refetch, isLoading, error } = useGetQuarksQuery(filter)
 
-const Today = ({ data }: any) => {
-  const [todayList, setTodayList] = useState(data)
+  const [updateQuark] = useUpdateQuarkMutation()
 
-  const handleComplete = item => {
-    console.log({todayList})
-    const list = map(todayList, (quark) => {
-       if (quark.name != item) {
-        console.log({quark, item})
-        return quark;
-       }
+  console.log('looking at data here', data)
+
+  const notCompletedQuarks = useMemo(() => {
+    let notCompleted = map(quarks, (quark: IQuark) => {
+      if (quark.today_complete) {
+        return quark
+      }
     })
-    console.log({list})
-    setTodayList(list)
-    console.log({todayList })
+    return (notCompleted = notCompleted.filter(quark => quark !== undefined))
+  }, [quarks])
+
+  const createListOfQuarks = () => {
+    console.log('createListOfQuarks')
   }
 
-  return data.map(quark => (
-    <div style={{ display: 'flex' }}>
-      <Button key={quark.id} onClick={e => handleComplete(e.currentTarget.textContent)}>
-        {quark.name}
-      </Button>
+  const handleComplete = useCallback(async id => {
+    console.log({ id })
+    await updateQuark({
+      id,
+      data: { today_complete: true }
+    })
+    refetch()
+  }, [])
+
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column' }}>
+      <div className={styles.todayButton}>
+        <Button onClick={createListOfQuarks} style={{}}>
+          Create Today
+        </Button>
+      </div>
+      {console.log({ notCompletedQuarks })}
+
+      {notCompletedQuarks.map(quark => (
+        <div style={{ display: 'flex' }}>
+          <Button key={quark._id} onClick={e => handleComplete(quark._id)}>
+            {quark.name}
+          </Button>
+        </div>
+      ))}
     </div>
-  ))
+  )
 }
 
 export default Today
@@ -59,7 +76,8 @@ export async function getServerSideProps() {
     description: 1,
     price: 1,
     file: 1,
-    _id: 1
+    _id: 1,
+    today_complete: 1
   })
 
   if (!response) {
@@ -68,6 +86,6 @@ export async function getServerSideProps() {
     }
   }
 
-  const data = JSON.parse(JSON.stringify(response))
-  return { props: { data } }
+  const quarks = JSON.parse(JSON.stringify(response))
+  return { props: { quarks } }
 }
