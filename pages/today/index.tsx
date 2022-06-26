@@ -17,7 +17,7 @@ import { useUpdateQuarkMutation, useGetQuarksQuery } from '../../store/apiSlice'
 
 const Today = ({ quarks }: any) => {
     const filter = JSON.stringify({ name: "Test Quark"});
-  const { data, refetch, isLoading, error } = useGetQuarksQuery(filter)
+  const { data, refetch, isLoading, error } = useGetQuarksQuery()
 
   const [updateQuark] = useUpdateQuarkMutation()
 
@@ -54,7 +54,7 @@ const Today = ({ quarks }: any) => {
       </div>
       {console.log({ notCompletedQuarks })}
 
-      {notCompletedQuarks.map(quark => (
+      {data.map(quark => (
         <div style={{ display: 'flex' }}>
           <Button key={quark._id} onClick={e => handleComplete(quark._id)}>
             {quark.name}
